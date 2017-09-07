@@ -1,4 +1,4 @@
-# HKOSCon2017 Haxe Game Workshop
+# Haxe Summit 2017 Haxe Workshop
 
 [![Join the chat at https://gitter.im/hkoscon2017-haxe-game/Lobby](https://badges.gitter.im/hkoscon2017-haxe-game/Lobby.svg)](https://gitter.im/hkoscon2017-haxe-game/Lobby?utm_source=badge&utm_medium=badge&utm_content=badge)
 
@@ -65,6 +65,29 @@ Depending on your OS, [Visual Studio](https://www.visualstudio.com/) (Windows), 
 ## Notes
 
 We will introduce Haxe and go through creating a simple multi-player game during the workshop together. The instruction will be given during the workshop. Below are some notes for future reference.
+
+The workshop is divided into 6 sections:
+
+ 1. [Getting started](section1.md)
+    * what is Haxe
+    * showcases
+    * download and install
+ 2. [Haxe programming basics](section2.md)
+    * VSCode project setup
+    * syntax, type system, and other building blocks
+ 3. [Game building with Luxe](section3.md)
+    * using Haxe libraries and frameworks
+    * game architecture
+ 4. [Using NodeJS](section4.md)
+    * using native libraries (writing externs)
+    * NodeJS basics (CLI, NPM)
+ 5. [Multiplayer](section5.md)
+    * server-client communication
+ 6. [Where to go from here](section6.md)
+    * Haxe social networks
+    * pointers to advanced topics: game engines, hxcpp externs, web development, macros
+
+Each section is 30-minute long, with 10-minute breaks in-between.
 
 ### quick links
 
