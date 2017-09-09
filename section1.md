@@ -37,5 +37,72 @@ Haxe, designed to be a multi-target, helps in the following ways:
 
 ## Haxe showcases
 
+ * [HaxeFlixel showcase](http://haxeflixel.com/showcase/)
+ * [OpenFL showcase](http://www.openfl.org/showcase/)
+ * [Shiro Games](http://shirogames.com/) (Nicolas Cannasse, the Haxe creator's game company)
+ * [Verb](http://verbnurbs.com/) (cross-platform NURBS library)
+ * [Net Wars](http://www.netwars-project.com/webdoc) (an award-winning website featuring interactive video, infographics, social media etc.)
+
 ## How to download and install Haxe
 
+Simply use the installer (for Windows/Mac) or the software package (for Linux) in the [haxe.org download page](https://haxe.org/download/) to install.
+
+Once installed, a number of components should be available:
+
+ * the Haxe compiler with the Haxe standard library
+ * the `haxelib` package manager
+ * the [Neko virtual machine](http://nekovm.org/)
+
+Make sure the command line (i.e. terminal for Unix or command prompt/powershell for Windows) can access the above tools. Let's run the commands as follows:
+
+```sh
+haxe -version
+```
+
+```sh
+haxelib version
+```
+
+```sh
+neko version
+```
+
+Version numbers of the corresponding programs will be printed.
+
+### Hello World
+
+Create a folder for storing the hello world project. Within the folder, create a Haxe source file, named `HelloWorld.hx`, with the content as follows:
+
+```haxe
+class HelloWorld {
+    static function main() {
+        trace("Hello, World!");
+    }
+}
+```
+
+Create a build configuration file, named `build.hxml`, with the content as follows:
+```
+-main HelloWorld
+--interp
+```
+
+Open a command line window and run the commands as follows:
+
+```sh
+# change directory to the project folder
+cd path/to/hello_world_project
+
+# compile
+haxe build.hxml
+```
+
+It should prints `HelloWorld.hx:3: Hello, World!`.
+
+What we have just done is to let the Haxe compiler interpret the Haxe code written in the `HelloWorld` class.
+
+Notice that the content of `build.hxml` is simply the command line arguments for the Haxe compiler. It means, our `haxe build.hxml` command is the same as `haxe -main HelloWorld --interp`.
+
+Let's try to target JavaScript. To do so, replace `--interp` with `-js HellowWorld.js`, and then compile again. A `HellowWorld.js` file will be created in the project folder.
+
+The list of targets and other compiler parameters can be found using `haxe --help`.
