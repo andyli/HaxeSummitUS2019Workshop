@@ -74,7 +74,7 @@ The workshop is divided into 6 sections:
     * download and install
  2. [Haxe programming basics](section2.md)
     * VSCode project setup
-    * syntax, type system, and other building blocks
+    * basic building blocks
  3. [Game building with Luxe](section3.md)
     * using Haxe libraries and frameworks
     * game architecture
