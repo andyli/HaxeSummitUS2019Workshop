@@ -30,7 +30,7 @@ In our `HelloWorld` module, we defined a `HelloWorld` class, and tell the Haxe c
 
 In our `main()`, we used `trace()`, which is a special function for debugging. By default, `trace()` will print out its argument to the console.
 
-### Variables
+### Defining variables
 
 Use the `var` keyword to declare a variable.
 
@@ -69,7 +69,7 @@ class HelloWorld {
 }
 ```
 
-We can force the compiler to ignore the type error and output the expression as it, but then the program's behavior will be undefined, mostly depended on the target.
+We can force the compiler to ignore the type error and output the expression as is, but then the program's behavior will be undefined (mostly depended on the target).
 
 ```haxe
 class HelloWorld {
@@ -85,7 +85,9 @@ class HelloWorld {
 }
 ```
 
-Notice how some of the targets produce somewhat reasonable outputs, but different from each other. It is exactly why cross-platform development can be painful - we have to remember in what cases, the behavior can be different across platforms. Haxe helps by defining a single reasonable behavior across all its targets, and prevent us from doing tricky things that may lead to inconsistent behavior across targets.
+Notice how some of the targets produce somewhat reasonable outputs, but different from each other. It is exactly why cross-platform development can be painful - we have to remember in what cases, the behavior will be different across platforms. Haxe helps by defining a single reasonable behavior across all its targets, and prevent us from doing tricky things that may lead to inconsistent behavior across targets.
+
+### Defining functions
 
 Let's say we are in fact interested in Python's behavior - to repeat the `String` by n times. To do this in a cross-platform way, we have to define our own function.
 
@@ -106,11 +108,30 @@ class HelloWorld {
 
 The above `repeat()` implementation is not the best in anyway, but we will use it for learning a few things.
 
-Notice how I declare the function arguments in side the brackets, with their type information (`:String` and `:Int`). The type annotations are optional, but for documentation purpose, we usually add them anyway. Here we used another build-in type, `Int`, which is integer.
+Notice how I declare the function arguments inside the brackets, with their type information (`:String` and `:Int`). The type annotations are optional, but for documentation purpose, we usually add them anyway. Here we used another build-in type, `Int`, which is integer.
 
 After the close bracket, there is another type annotation (`:String`), which defines the return type of the `repeat()` function. It is also optional, but good to include anyway. Notice we didn't add one to `main()`. To define a return type for `main()`, we may use `Void`, which means nothing, because we do not `return` anything from `main()`;
 
 We used a loop expression in `repeat()`. Specifically, it is a [for-loop](https://haxe.org/manual/expression-for.html). Its syntax is `for (variable in start...end) ...`. It introduces a variable, and the variable's value will go from `start` to `end` (excluding `end`). In the case of our `repeat(str, 2)`, the `i` in the for-loop will be `0` and then `1`, resulting in running the content of the loop twice.
+
+When we want to repeat more than one expression in the loop body, we can use a block expression, which is exactly a group of expressions. For example, if we want to print out the loop variable in the for-loop:
+
+```haxe
+static function repeat(str:String, n:Int):String {
+    var result = "";
+    for (i in 0...n) {
+        trace("i is " + i);
+        result += str;
+    }
+    return result;
+}
+```
+
+Did you notice that we have been using block expressions as function bodies? So, right, a function with a single expression doesn't need a wrapping `{}`:
+
+```haxe
+function hello(name) trace("Hello, " + name + "!");
+```
 
 Sometimes we want to loop in a different way (for example we may want `i`'s value to go from `n` to `0` instead of `0` to `n`), we have to use a [while-loop](https://haxe.org/manual/expression-while.html) (or a [do-while-loop](https://haxe.org/manual/expression-do-while.html)), which is more flexible. Rewriting our `repeat()` with a while-loop, we will have:
 
@@ -119,14 +140,14 @@ static function repeat(str:String, n:Int):String {
     var result = "";
     var i = 0; // loop variable
     while (i < n) { // loop condition
-        result = result + str;
+        result += str;
         i = i + 1; // modify the loop variable in each iteration
     }
     return result;
 }
 ```
 
-There is a third way to perform repeating task - recursion, which is calling the same function within the function body. Rewriting our `repeat()` with recursion, we will have:
+There is a third way to perform repeating tasks - recursion, which is calling the same function within the function body. Rewriting our `repeat()` with recursion, we will have:
 
 ```haxe
 static function repeat(str:String, n:Int):String {
@@ -150,7 +171,7 @@ static function repeat(str:String, n:Int):String {
 
     var result = "";
     for (i in 0...n)
-        result += str; // same as `result = result + str;`
+        result += str;
     return result;
 }
 ```
@@ -188,6 +209,37 @@ class HelloWorld {
             trace("Let's repeat 1 time instead: ");
             trace(repeat(str, 1));
         }
+    }
+}
+```
+
+### Defining custom modules and classes
+
+Right now, the `repeat()` function is completed with error handling. To make it reusable in another project, let's move it to its own module.
+
+Create a `RepeatString.hx` file, with the content as follows:
+
+```haxe
+class RepeatString {
+    static public function repeat(str:String, n:Int):String {
+        if (n < 0)
+            throw "n cannot be less than 0";
+        else if (n == 0)
+            return "";
+        else {
+            return str + repeat(str, n-1);
+        }
+    }
+}
+```
+
+Modify `HelloWorld.hx` to:
+
+```haxe
+class HelloWorld {
+    static function main() {
+        var str = "Hello, World!";
+        trace(RepeatString.repeat(str, 2));
     }
 }
 ```
