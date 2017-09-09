@@ -14,7 +14,7 @@ The Haxe language support extension automatic detects the present of `.hxml` fil
 
 ## syntax, type system, and other building blocks
 
-Let's take a closer look to our `HelloWorld.hx` source code:
+Let's take a closer look at our `HelloWorld.hx` source code:
 
 ```haxe
 class HelloWorld {
@@ -213,15 +213,16 @@ class HelloWorld {
 }
 ```
 
-### Defining custom modules and classes
+### Packages, modules, and classes
 
 Right now, the `repeat()` function is completed with error handling. To make it reusable in another project, let's move it to its own module.
 
-Create a `RepeatString.hx` file, with the content as follows:
+Create a folder, named `utils`. Within the `utils` folder, create `RepeatString.hx` file, with the content as follows:
 
 ```haxe
+package utils;
 class RepeatString {
-    static public function repeat(str:String, n:Int):String {
+    static public function repeat(str:String, n:Int):String { // notice `public`
         if (n < 0)
             throw "n cannot be less than 0";
         else if (n == 0)
@@ -239,7 +240,39 @@ Modify `HelloWorld.hx` to:
 class HelloWorld {
     static function main() {
         var str = "Hello, World!";
+        trace(utils.RepeatString.repeat(str, 2)); // Generally, use the `.` notation to access members of something.
+    }
+}
+```
+
+Referencing the `RepeatString` class with `utils.RepeatString` is tedious. We can add an `import` statement at the top such that we can use `RepeatString` directly:
+
+```haxe
+import utils.RepeatString;
+class HelloWorld {
+    static function main() {
+        var str = "Hello, World!";
         trace(RepeatString.repeat(str, 2));
     }
 }
+```
+
+To further simplify things, we can import the `repeat()` function directly:
+
+```haxe
+import utils.RepeatString.repeat;
+class HelloWorld {
+    static function main() {
+        var str = "Hello, World!";
+        trace(repeat(str, 2));
+    }
+}
+```
+
+Moreover, wildcards (`*`) can be used to import every type or every public static member of a type:
+
+```haxe
+import utils.*; // import all the types in the utils package
+
+import utils.RepeatString.*; // import all the public static member of `RepeatString`
 ```
