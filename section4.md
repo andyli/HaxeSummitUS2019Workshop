@@ -45,7 +45,7 @@ Once it is compiled, we can run it with the command as follows:
 node server.js
 ```
 
-We can see that using native APIs is not much different than using Haxe APIs, except that we have to install some library. Those libraries that expose native APIs contain a bunch of [externs](https://haxe.org/manual/lf-externs.html), which are Haxe types that tells the Haxe compiler what the type signatures of the native APIs. Notice that for some targets, e.g. Java, C#, and Flash, the Haxe compiler is smart enough to consume the type information available in the native library, so we don't really need externs. Instead, we just need to use `-java-lib path/to/foo.jar` to use a Java library, for example.
+We can see that using native APIs is not much different from using Haxe APIs, except that we have to install some library. Libraries that expose native APIs contain a bunch of [externs](https://haxe.org/manual/lf-externs.html), which are Haxe types that tell the Haxe compiler about the type signatures of the native APIs. Notice that for some targets, e.g. Java, C#, and Flash, the Haxe compiler is smart enough to consume the type information available in the native library, so we don't really need externs for those targets. Instead, we just need to use `-java-lib path/to/foo.jar` to use a Java library, for example.
 
 Let's take a look at the [extern class of the Node fs module](https://github.com/HaxeFoundation/hxnodejs/blob/4.0.9/src/js/node/Fs.hx#L269-L270) we have just used:
 
