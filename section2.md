@@ -276,3 +276,105 @@ import utils.*; // import all the types in the utils package
 
 import utils.RepeatString.*; // import all the public static member of `RepeatString`
 ```
+
+### Array
+
+We have used `String`, a sequence of characters. What if we want to store a sequence of value of arbitrary type? Use `Array`.
+
+
+```haxe
+class HelloWorld {
+    static function main() {
+        // to define an Array, use the square brackets
+        var numbers = [1, 2, 3, 4, 5];
+
+        // also use square brackets for accessing the elements
+        // notice that the array "index" starts from 0
+        var thirdElement = numbers[2];
+        trace(thirdElement); // 3
+
+        // an Array is "iterable"
+        for (element in numbers) {
+            trace(element); //1, 2, 3, 4, 5
+        }
+
+        // an Array is "mutable"
+        numbers.push(6); // add 6 to the end
+        trace(numbers); // [1, 2, 3, 4, 5, 6]
+
+        var lastElement = numbers.pop(); // remove the last element
+        trace(lastElement); // 6
+        trace(numbers); // [1, 2, 3, 4, 5]
+
+        // to create an empty Array, use [] or new
+        var emptyArray = [];
+        var alsoEmptyArray = new Array();
+    }
+}
+```
+
+#### Exercise
+
+Can you complete the following `RepeatValue.repeat` function, such that `utils.RepeatValue.repeatInt(1, 3)` returns `[1, 1, 1]`, and `utils.RepeatValue.repeat(3.14, 3)` returns `[3.14, 3.14, 3.14]`?
+
+```haxe
+package utils;
+class RepeatValue {
+    static public function repeatInt(value:Int, n:Int):Array<Int> {
+        throw "implement this";
+    }
+
+    // `repeatInt` can only repeat `Int`, the following can repeat any type!
+    // Notice the `<T>` "type parameter"!
+    static public function repeat<T>(value:T, n:Int):Array<T> {
+        throw "implement this";
+    }
+}
+```
+
+### Class instance
+
+Previously, we have been defining `static` functions, which are members of the class itself. Notice we have used `Array`'s `.push()` and `.pop()` methods, and those are the members of an `Array` "instance".
+
+Let's create a 2D point class.
+
+```haxe
+class Point {
+    // member variables
+    public var x:Float;
+    public var y:Float;
+
+    // "constructor"
+    public function new(_x:Float, _y:Float):Void {
+        this.x = _x;
+        this.y = _y;
+    }
+
+    public function length():Float {
+        return Math.sqrt(x * x + y * y);
+    }
+
+    static public function distance(pt1:Point, pt2:Point):Float {
+        return Math.sqrt(Math.pow(pt1.x - pt2.x, 2) + Math.pow(pt1.y - pt2.y, 2));
+    }
+}
+
+class HelloWorld {
+    static function main() {
+        var pt = new Point(10, 100);
+        // access the member variables with dot notation
+        trace(pt.x); // 10
+        trace(pt.y); // 100
+
+        // we can change the member variable
+        pt.x = 0;
+        trace(pt.x); // 0
+
+        // call the instance method length()
+        trace(pt.length()); // 100
+
+        // call the class method distance()
+        trace(Point.distance(pt, new Point(0, 0))); // 100
+    }
+}
+```
