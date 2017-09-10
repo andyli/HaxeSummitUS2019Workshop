@@ -1,8 +1,6 @@
-# Haxe Summit 2017 Haxe Workshop
+# Haxe Summit 2017 Haxe Tutorial
 
-[![Join the chat at https://gitter.im/hkoscon2017-haxe-game/Lobby](https://badges.gitter.im/hkoscon2017-haxe-game/Lobby.svg)](https://gitter.im/hkoscon2017-haxe-game/Lobby?utm_source=badge&utm_medium=badge&utm_content=badge)
-
-Workshop info: [Build a cross-platform game in Haxe](https://hkoscon.org/2017/topics/build-a-cross-platform-game-in-haxe/)
+Workshop info: [Haxe Tutorial](http://summit.haxe.org/#talk-haxe-tutorial)
 
 This is an [agar.io](https://agar.io/) clone to demonstrate the capability of Haxe in building cross platform games,
 where codes are shared among multiple game platforms (web, mac, windows, android & ios),
@@ -18,7 +16,7 @@ Please follow the instruction listed below before the workshop, such that you ca
 
 ### Install Haxe
 
-Get Haxe from http://haxe.org/download/.
+Get Haxe from https://haxe.org/download/.
 
 ### Install Node.js
 
@@ -91,12 +89,12 @@ Each section is 30-minute long, with 10-minute breaks in-between.
 
 ### quick links
 
- * Haxe Manual: http://haxe.org/manual/introduction.html
+ * Haxe Manual: https://haxe.org/manual/introduction.html
  * Haxe API docs: https://devdocs.io/ (or http://api.haxe.org/)
  * Try Haxe: https://try.haxe.org/
  * Luxe engine beginners guide: https://luxeengine.com/guide/
  * Luxe engine API docs: https://luxeengine.com/docs/api/
- * `haxe-ws` library: http://lib.haxe.org/p/haxe-ws
+ * `haxe-ws` library: https://lib.haxe.org/p/haxe-ws
  * `ws` npm package: https://www.npmjs.com/package/ws#usage-examples
 
 ### Server
@@ -144,7 +142,7 @@ mode. The same piece of code is used in both client and server.
 
 ## Feedback / Questions
 
-Feel free to [open issues](https://github.com/kevinresol/hkoscon2017-haxe-game/issues) or contact us directly.
+Feel free to [open issues](https://github.com/andyli/HaxeSummit2017Tutorial/issues) or contact us directly.
 
 ## License
 
@@ -158,7 +156,7 @@ Feel free to [open issues](https://github.com/kevinresol/hkoscon2017-haxe-game/i
   <span resource="[_:publisher]" rel="dct:publisher">
     <span property="dct:title">Andy Li & Kevin Leung</span></span>
   has waived all copyright and related or neighboring rights to
-  <span property="dct:title">"Build a cross-platform game in Haxe" workshop</span>.
+  <span property="dct:title">Haxe Summit 2017 Haxe Tutorial</span>.
 This work is published from:
 <span property="vcard:Country" datatype="dct:ISO3166"
       content="HK" about="https://github.com/kevinresol/hkoscon2017-haxe-game">
