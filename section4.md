@@ -3,16 +3,16 @@
 In this section, we will detour a little bit and look at writing [NodeJS](https://nodejs.org/) programs in Haxe.
 
 We will look at
- * using native libraries (writing externs)
+ * using libraries written in the target language (writing externs)
  * NodeJS basics (CLI, NPM)
 
 Before we start, make sure you have installed NodeJS, and the `node` and `npm` command line program is available.
 
-## using native libraries
+## using libraries written in the target language
 
-From time to time we will need to access platform API and native libraries.
+From time to time we will need to access platform API and libraries written in the target language.
 
-For most platform APIs, they are already available in the Haxe standard library that comes with any Haxe installation. They reside in the package of the same name as the target. For instance, the JavaScript and HTML DOM APIs are reside in the [`js` package](http://api.haxe.org/js/index.html). Those target packages come with a `Lib` class, which contains most commonly used native top-level functions.
+For most platform APIs, they are already available in the Haxe standard library that comes with any Haxe installation. They reside in the package of the same name as the target. For instance, the JavaScript and HTML DOM APIs are reside in the [`js` package](http://api.haxe.org/js/index.html). Those target packages come with a `Lib` class, which contains most commonly used top-level functions.
 
 For NodeJS support, we may use the [hxnodejs](http://lib.haxe.org/p/hxnodejs/) library, which is maintained by the Haxe Foundation. To install it, simply run `haxelib install hxnodejs`.
 
@@ -45,7 +45,7 @@ Once it is compiled, we can run it with the command as follows:
 node server.js
 ```
 
-We can see that using native APIs is not much different from using Haxe APIs, except that we have to install some library. Libraries that expose native APIs contain a bunch of [externs](https://haxe.org/manual/lf-externs.html), which are Haxe types that tell the Haxe compiler about the type signatures of the native APIs. Notice that for some targets, e.g. Java, C#, and Flash, the Haxe compiler is smart enough to consume the type information available in the native library, so we don't really need externs for those targets. Instead, we just need to use `-java-lib path/to/foo.jar` to use a Java library, for example.
+We can see that using target APIs is not much different from using Haxe APIs, except that we have to install some library. Libraries that expose target APIs contain a bunch of [externs](https://haxe.org/manual/lf-externs.html), which are Haxe types that tell the Haxe compiler about the type signatures of the target APIs. Notice that for some targets, e.g. Java, C#, and Flash, the Haxe compiler is smart enough to consume the type information available in the library, so we don't really need externs for those targets. Instead, we just need to use `-java-lib path/to/foo.jar` to use a Java library, for example.
 
 Let's take a look at the [extern class of the Node fs module](https://github.com/HaxeFoundation/hxnodejs/blob/4.0.9/src/js/node/Fs.hx#L269-L270) we have just used:
 
