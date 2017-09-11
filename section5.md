@@ -65,7 +65,7 @@ Similar to `Command`, let's define the `Message` that server sends to clients:
 package mp;
 import game.*;
 enum Message {
-	Joined(id:Int);
+	Joined(id:Int); // the server assigns an id to the client
 	State(state:GameState);
 }
 ```
@@ -88,3 +88,24 @@ class HelloWorld {
 ```
 
 We can see that it is really easy to share things, including types and runtime values, between Haxe programs.
+
+## Put all the pieces together
+
+You should now be able to implement multiplayer to the game. Some additional tips and details:
+
+ * Assume there is only one game world and all player connecting to the server will join the same world.
+
+ * The server should maintain an `Array` of players and their associated WebSocket connections.
+
+ * The client will first send an `Join` message once connected to the server. The server will reply with `Joined(id)`. The client should save the id.
+
+ * Use `haxe.Timer` to implement the game loop in the server.
+ 
+ * In each iteration of the game loop,
+   * update the game world
+   * send the game state to all connected clients
+   * perform any clean up as needed (e.g. removing disconnected clients.
+
+ * When the client receives a `State(state)`, it should save it, and render it during `update()`.
+
+ * When the player press down, release, or move the cursor, the client no longer need to update the state, but just send a `Command` to the server.
