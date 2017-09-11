@@ -1,9 +1,10 @@
 
-import luxe.GameConfig;
-import luxe.Input;
-import luxe.Color;
-import luxe.Vector;
-import luxe.tween.Actuate;
+import openfl.display.FPS;
+import openfl.display.Sprite;
+import openfl.geom.Point;
+import openfl.events.Event;
+import openfl.events.TouchEvent;
+import openfl.events.MouseEvent;
 import game.*;
 using Lambda;
 
@@ -14,7 +15,7 @@ import mp.Command;
 import mp.Message;
 #end
 
-class Main extends luxe.Game {
+class Main extends Sprite {
 
 	var world:World;
 	var state:GameState;
@@ -23,21 +24,9 @@ class Main extends luxe.Game {
 	#if MULTIPLAYER
 	var ws:haxe.net.WebSocket;
 	#end
-
-	override function config(config:GameConfig) {
-
-		// https://luxeengine.com/guide/#gettingstarted
-		config.window.title = 'Haxe Agar';
-		config.window.width = 960;
-		config.window.height = 640;
-		config.window.fullscreen = false;
-		config.render.antialiasing = 8;
-
-		return config;
-
-	} //config
-
-	override function ready() {
+	
+	public function new() {
+		super();
 		trace("built at " + BuildInfo.getBuildDate());
 
 		#if MULTIPLAYER
@@ -54,18 +43,23 @@ class Main extends luxe.Game {
 			world = new World();
 			id = world.createPlayer().id;
 		#end
-
-	} //ready
-
-	override function onkeyup(event:KeyEvent) {
-
-		if(event.keycode == Key.escape) {
-			Luxe.shutdown();
-		}
-
-	} //onkeyup
-
-	override function update(delta:Float) {
+		
+		openfl.Lib.current.addChild(new FPS(10, 10, 0xffffff));
+		
+		stage.addEventListener(Event.ENTER_FRAME, update);
+		// #if desktop
+		stage.addEventListener(MouseEvent.MOUSE_DOWN, onmousedown);
+		stage.addEventListener(MouseEvent.MOUSE_MOVE, onmousemove);
+		stage.addEventListener(MouseEvent.MOUSE_UP, onmouseup);
+		// #else
+		// stage.addEventListener(TouchEvent.TOUCH_BEGIN, ontouchdown);
+		// stage.addEventListener(TouchEvent.TOUCH_MOVE, ontouchmove);
+		// stage.addEventListener(TouchEvent.TOUCH_END, ontouchup);
+		// #end
+	}
+	
+	var sprites = new Map();
+	function update(_) {
 		#if MULTIPLAYER
 			ws.process();
 			if(state == null) return; // not ready
@@ -77,9 +71,8 @@ class Main extends luxe.Game {
 		var player = state.objects.find(function(o) return o.id == id);
 		if(player != null) {
 			// move player
-			var mid = Luxe.screen.mid;
 			if(touched) {
-				var dir = Math.atan2(cursor.y - mid.y, cursor.x - mid.x);
+				var dir = Math.atan2(cursor.y - stage.stageHeight / 2, cursor.x - stage.stageWidth / 2);
 				#if MULTIPLAYER
 					if(player.speed == 0) ws.sendString(Serializer.run(StartMove));
 					ws.sendString(Serializer.run(SetDirection(dir)));
@@ -96,48 +89,61 @@ class Main extends luxe.Game {
 			}
 
 			// update camera
-			var scale = player.size / 40;
-			Actuate.tween(Luxe.camera.scale, 1.0, {x: scale, y: scale});
-			Luxe.camera.pos.set_xy(player.x - mid.x, player.y - mid.y);
+			var scale = 40 / player.size;
+			this.scaleX = scale;
+			this.scaleY = scale;
+			this.x = stage.stageWidth / 2 - player.x * scale;
+			this.y = stage.stageHeight / 2 - player.y * scale;
 		}
 
 		for(object in state.objects) {
-			Luxe.draw.circle({
-				x: object.x,
-				y: object.y,
-				r: object.size,
-				color: new Color().rgb(object.color),
-				immediate: true, // see luxe.Visual & luxe.Sprite for persistent display objects
-				depth: object.depth,
-			});
+			if(!sprites.exists(object)) {
+				var sprite = new Sprite();
+				sprites.set(object, sprite);
+				sprite.graphics.beginFill(object.color);
+				sprite.graphics.drawCircle(0, 0, 100);
+				sprite.graphics.endFill();
+				addChild(sprite);
+			}
+			var sprite = sprites.get(object);
+			sprite.scaleX = sprite.scaleY = object.size / 100;
+			sprite.x = object.x;
+			sprite.y = object.y;
+		}
+		
+		for(object in sprites.keys()) {
+			if(!state.objects.exists(function(obj) return obj == object)) {
+				removeChild(sprites.get(object));
+				sprites.remove(object);
+			}
 		}
 	} //update
 
 	var touched:Bool = false;
-	var cursor = new Vector();
-	override function onmousedown(e) {
+	var cursor = new Point();
+	function onmousedown(e:MouseEvent) {
 		touched = true;
-		cursor.set_xy(e.x, e.y);
+		cursor.setTo(e.stageX, e.stageY);
 	}
 	
-	override function onmousemove(e) {
-		cursor.set_xy(e.x, e.y);
+	function onmousemove(e:MouseEvent) {
+		cursor.setTo(e.stageX, e.stageY);
 	}
 
-	override function onmouseup(e) {
+	function onmouseup(_) {
 		touched = false;
 	}
 	
-	override function ontouchdown(e) {
+	function ontouchdown(e:TouchEvent) {
 		touched = true;
-		cursor.set_xy(e.x, e.y);
+		cursor.setTo(e.stageX, e.stageY);
 	}
 	
-	override function ontouchmove(e:TouchEvent) {
-		cursor.set_xy(e.x * Luxe.screen.size.x, e.y * Luxe.screen.size.y);
+	function ontouchmove(e:TouchEvent) {
+		cursor.setTo(e.stageX, e.stageY);
 	}
 
-	override function ontouchup(e) {
+	function ontouchup(e) {
 		touched = false;
 	}
 
