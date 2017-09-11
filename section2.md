@@ -193,11 +193,11 @@ class HelloWorld {
     static function repeat(str:String, n:Int):String {
         if (n < 0)
             throw "n cannot be less than 0";
-        else if (n == 0)
-            return "";
-        else {
-            return str + repeat(str, n-1);
-        }
+
+        var result = "";
+        for (i in 0...n)
+            result += str;
+        return result;
     }
     static function main() {
         var str = "Hello, World!";
@@ -225,11 +225,11 @@ class RepeatString {
     static public function repeat(str:String, n:Int):String { // notice `public`
         if (n < 0)
             throw "n cannot be less than 0";
-        else if (n == 0)
-            return "";
-        else {
-            return str + repeat(str, n-1);
-        }
+
+        var result = "";
+        for (i in 0...n)
+            result += str;
+        return result;
     }
 }
 ```
@@ -276,6 +276,37 @@ import utils.*; // import all the types in the utils package
 
 import utils.RepeatString.*; // import all the public static member of `RepeatString`
 ```
+
+### Conditional compilation
+
+The `repeat()` looks really nice now, and it works in every Haxe target, including Python. But think about it, we already knew that we can use `str * number` to repeat a `String`, can we just use that for the Python target, and use our implementation for all other targets?
+
+Why not.
+
+```haxe
+package utils;
+class RepeatString {
+    static public function repeat(str:String, n:Int):String {
+        if (n < 0)
+            throw "n cannot be less than 0";
+
+        #if python
+            return untyped str * n;
+        #else
+            var result = "";
+            for (i in 0...n)
+                result += str;
+            return result;
+        #end
+    }
+}
+```
+
+#### Exercise
+
+ 1. Try to compare the Python output before and after using conditional compilation.
+
+ 2. Add the `inline` keyword in front of `static public function repeat(...`, see how it affects the Python output and the JS output.
 
 ### Array
 
