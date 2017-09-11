@@ -69,3 +69,35 @@ extern class Fs {
 ```
 
 The `extern` keyword denotes that it is an extern class. The `@:jsRequire("fs")` metadata tells that the type can be loaded at runtime by calling `require("fs")`, which is the NodeJS way of loading modules. The members of the class are just written normally, with the exception that the function bodies are left out, since the implementation is given by the runtime or external library.
+
+## using NodeJS libraries
+
+NodeJS libraries, which are called modules in the NodeJS world, are managed with the `npm` tool, which is somewhat similar to `haxelib`.
+
+We are going to use WebSocket to implement server-client communication. NodeJS itself does not provide WebSocket API, but luckily, there is a WebSocket NodeJS module, [ws](https://www.npmjs.com/package/ws).
+
+To install it, run the command as follows:
+
+```sh
+cd path/to/project_folder
+
+npm install ws
+```
+
+You will notice that there is a `node_modules` folder created in the project folder. It is where the modules being installed. For reference, `haxelib` by default install libraries to a folder shared by all projects, but `npm` by default install libraries to the project folder.
+
+Let's write our extern class for `ws`:
+
+```haxe
+@:jsRequire('ws','Server')
+extern class WebSocketServer extends EventEmitter<WebSocketServer> {
+	function new(?config:Dynamic);
+}
+```
+
+Loading a node module can be done using the `require()` JS function as it is done with the `fs` package. We want to load the `Server` member of the `ws` module, and it can be done using the `@:jsRequire('ws','Server')` metadata.
+
+We don't need to write all the members, but the ones we need. In this case, we only need the constructor, so we add `new()`. The constructor accept a configuration object that have a variable number of fields, i.e. some fields can be left out to use their default value. Using `Dynamic`, which means "any type", is a nice choice at the moment. For best practice, we should use a structure type with optional fields.
+
+Finally, we also want to use `on()` method for event handling. The `on()` method is actually part of the `EventEmitter` type, so we can use `extends EventEmitter<WebSocketServer>` to let `WebSocketServer` inherit the `on()` method from `EventEmitter`.
+
