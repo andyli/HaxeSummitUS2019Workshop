@@ -73,7 +73,7 @@ The workshop is divided into 6 sections:
  2. [Haxe programming basics](section2.md)
     * VSCode project setup
     * basic building blocks
- 3. [Game building with Luxe](section3.md)
+ 3. [Game building with OpenFL](section3.md)
     * using Haxe libraries and frameworks
     * game architecture
  4. [Using NodeJS](section4.md)

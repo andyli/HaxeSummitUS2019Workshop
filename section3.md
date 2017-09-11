@@ -1,8 +1,8 @@
-# Section 3 - Game building with Luxe
+# Section 3 - Game building with OpenFL
 
 In this section, we will look at
 - using Haxe libraries and frameworks
-- the Luxe game engine and game architecture
+- the OpenFL framework and game architecture
 
 ## Using Haxe libraries and frameworks
 
@@ -59,41 +59,35 @@ After that, you can use the Types (i.e. Classes, Enums, etc) provided by the [fo
 
 ## Game Frameworks
 
-Haxe is famous for its game-building capability. There are a lot of game framework written in Haxe. We are going to pick one and build a simple game in this tutorial: **Luxe**.
+Haxe is famous for its game-building capability. There are a lot of game framework written in Haxe. We are going to pick one and build a simple game in this tutorial: **OpenFL**.
 
-(For curious babies: some other Haxe game frameworks could be found with these keywords: `NME`, `OpenFL`, `Kha`, `Heaps`)
+(For curious babies: some other Haxe game frameworks could be found with these keywords: `NME`, `Kha`, `Heaps`, `Luxe`)
 
-#### Install Luxe
-
-Luxe consists of a list of libraries, installing or keeping them up-to-date manually could be a cubersome task. Luckily, Snowkit (the community behind Luxe) provided a handy little tool, `snowfall`, to assist us. To install it:
+#### Install OpenFL
 
 ```
-haxelib install snowfall
+haxelib install lime
+haxelib install openfl
 ```
 
-After that, you can run the following command to install Luxe:
+#### Create a new OpenFL project
+
+If you are using HaxeDevelop, you can create a new OpenFL project by navigating through the menu bar: `Project > New > OpenFL Project`
+
+Otherwise, you can run the following openfl command:
 
 ```
-haxelib run snowfall update luxe
+openfl create project
 ```
-
-#### Create a new Luxe project
-
-If you are using HaxeDevelop, you can create a new Luxe project by navigating through the menu bar: `Project > New > Luxe Project`
-
-Otherwise, you can run `haxelib path luxe` to check out the installed path of the Luxe library, and then go there to copy the `samples/empty` folder, which contains the skeleton of an empty Luxe project.
 
 #### Build and Run
 
-To build and run, execute one of the following commands in your Luxe project:
+To build and run, execute one of the following commands in your OpenFL project:
 
 ```
-haxelib run flow run web
-haxelib run flow run android
-haxelib run flow run ios
-haxelib run flow run linux
-haxelib run flow run mac
-haxelib run flow run windows
+openfl test html5
+openfl test mac
+(etc...)
 ```
 
 ## Game architecture
@@ -102,5 +96,4 @@ Most game engines work in this way:
 
 The core of a game usually consists of a main game loop, which is a function written by us as game developers. In general, the loop runs about 30-60 times per second. During each iteration, the user input will be processed, game state will be updated, and the visuals on the screen will be updated. 
 
-In the Luxe game engine, the main game loop is represented by the `update()` function in the main `Game` class. At high level, user input can be obtained from the `luxe.Input` class; game states are stored in `luxe.Entity` and `luxe.Component` classes and their derivatives; and visuals are represented by `luxe.Visual` or `luxe.Sprite` or their derivatives.
-
+In OpenFL, the main game loop is usually created by listening to the `ENTER_FRAME` event. Inputs are handled by listen to various events in `KeyboardEvent`, `TouchEvent`, `MouseEvent`. Visuals are generally handled by `DisplayObject` and its subclasses.
