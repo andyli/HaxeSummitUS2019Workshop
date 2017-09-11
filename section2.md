@@ -336,45 +336,90 @@ class RepeatValue {
 
 Previously, we have been defining `static` functions, which are members of the class itself. Notice we have used `Array`'s `.push()` and `.pop()` methods, and those are the members of an `Array` "instance".
 
-Let's create a 2D point class.
+Classes are good for modeling objects that have a mutable state, as well as a set of methods that depends on its state.
+
+Let's try define our own classes, `Person` and `SecretAgent`:
 
 ```haxe
-class Point {
-    // member variables
-    public var x:Float;
-    public var y:Float;
-
-    // "constructor"
-    public function new(_x:Float, _y:Float):Void {
-        this.x = _x;
-        this.y = _y;
+class Person {
+    private var name:String;
+    public function new(name:String) {
+        this.name = name;
     }
-
-    public function length():Float {
-        return Math.sqrt(x * x + y * y);
+    public function getName():String {
+        return name;
     }
+}
 
-    static public function distance(pt1:Point, pt2:Point):Float {
-        return Math.sqrt(Math.pow(pt1.x - pt2.x, 2) + Math.pow(pt1.y - pt2.y, 2));
+class SecretAgent extends Person {
+    override public function getName():String {
+        return "Smith";
     }
 }
 
 class HelloWorld {
+    static function askName(p:Person):Void {
+        trace(p.getName());
+    }
     static function main() {
-        var pt = new Point(10, 100);
-        // access the member variables with dot notation
-        trace(pt.x); // 10
-        trace(pt.y); // 100
+        var andy = new Person("Andy");
+        askName(andy); // Andy
+        var kevin = new SecretAgent("Kevin");
+        askName(kevin); // Smith
+    }
+}
+```
 
-        // we can change the member variable
-        pt.x = 0;
-        trace(pt.x); // 0
+Notice how `SecretAgent` inherits the constructor of `Person` and overrides the `getName()` method.
 
-        // call the instance method length()
-        trace(pt.length()); // 100
+### Anonymous object
 
-        // call the class method distance()
-        trace(Point.distance(pt, new Point(0, 0))); // 100
+We don't always have to create a class to store a bunch of data. Most of the time, we can simply use an anonymous object.
+
+```haxe
+class HelloWorld {
+    static function main() {
+        var andy = {
+            name: "Andy",
+            occupation: "researcher"
+        };
+        var kevin = {
+            name: "Kevin",
+            occupation: "secret agent"
+        };
+        trace(andy.name); // Andy
+        trace(kevin.name); // Kevin
+    }
+}
+```
+
+Notice that there is no concept of private, so `kevin` cannot really protect it's real `name` by itself.
+
+An anonymous object is anonymous because it is an object without a class. Although without a class, there is still a structural type associated with the object.
+
+For the above example, the type of `andy` and `kevin` can be illustrated as follows:
+
+```
+// give the structural type an "alise" for easy reference
+typedef Person = {
+    name:String,
+    occupation:String
+}
+
+class HelloWorld {
+    static function main() {
+        var andy:Person = {
+            name: "Andy",
+            occupation: "researcher"
+        };
+        var kevin:Person = {
+            name: "Kevin",
+            occupation: "secret agent"
+        };
+        trace(andy.name); // Andy
+        trace(kevin.name); // Kevin
+
+        trace(andy.height); // error: Person has no field height
     }
 }
 ```
