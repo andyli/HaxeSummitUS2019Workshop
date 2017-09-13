@@ -4,31 +4,32 @@
     "tasks": [
         {
             "taskName": "build web",
-            "command": "haxelib",
-            "args": ["run","flow","build","web"],
-            "isBuildCommand": true
+            "command": "openfl",
+            "args": [
+                "test",
+                "html5"
+            ],
+            "isBuildCommand": true,
+            "problemMatcher": [
+                "$haxe"
+            ]
         },
         {
             "taskName": "build desktop",
-            "command": "haxelib",
-            "args": ["run","flow","build"],
+            "command": "openfl",
+            "args": [
+                "test",
+                "mac"
+            ],
             "isBuildCommand": true
         },
         {
             "taskName": "build server",
             "command": "haxe",
-            "args": ["server.hxml"],
+            "args": [
+                "server.hxml"
+            ],
             "isBuildCommand": true
-        },
-        {
-            "taskName": "generate client.hxml (web)",
-            "isShellCommand": true,
-            "command": "haxelib run flow info web --hxml > client.hxml"
-        },
-        {
-            "taskName": "generate client.hxml (desktop)",
-            "isShellCommand": true,
-            "command": "haxelib run flow info --hxml > client.hxml"
         }
     ]
 }
