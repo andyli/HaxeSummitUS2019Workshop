@@ -3,7 +3,7 @@
 	
 	<meta title="Haxe" package="com.sample.haxe" version="1.0.0" company="Haxe Summit 2017" />
 	<app main="Main" path="bin" file="Haxe" />
-	<window background="#000000"/>
+	<window background="#000000" fps="60"/>
 	
 	<source path="src" />
 	
