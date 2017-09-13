@@ -1,17 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <project>
-	
-	<meta title="Haxe" package="com.sample.haxe" version="1.0.0" company="Haxe Summit 2017" />
 	<app main="Main" path="bin" file="Haxe" />
 	<window background="#000000" fps="60"/>
-	
 	<source path="src" />
-	
 	<haxelib name="openfl" />
-	
-	<assets path="assets" rename="assets" />
-	
-	<haxeflag name="--times"/>
-	<haxeflag name="-dce" value="full"/>
-	
 </project>
