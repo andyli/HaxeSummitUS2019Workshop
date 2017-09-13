@@ -50,6 +50,11 @@ Note: if it is the first time you are using `haxelib`, you will have to run `hax
    haxelib install hxnodejs
    ```
 
+ * [hxcpp](https://github.com/HaxeFoundation/hxcpp)
+
+   ```
+   haxelib install hxcpp 3.4.64
+   ```
 
 ### Install Visual Studio Code
 
