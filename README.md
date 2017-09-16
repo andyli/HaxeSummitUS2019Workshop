@@ -86,7 +86,7 @@ The workshop is divided into 6 sections:
     * NodeJS basics (CLI, NPM)
  5. [Multiplayer](section5.md)
     * server-client communication
- 6. [Where to go from here](section6.md)
+ 6. Where to go from here
     * Haxe social networks
     * pointers to advanced topics: game engines, hxcpp externs, web development, macros
 
