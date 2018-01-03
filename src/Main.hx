@@ -1,10 +1,6 @@
 
-import openfl.display.FPS;
-import openfl.display.Sprite;
-import openfl.geom.Point;
-import openfl.events.Event;
-import openfl.events.TouchEvent;
-import openfl.events.MouseEvent;
+import hxd.*;
+import h2d.*;
 import game.*;
 using Lambda;
 
@@ -15,10 +11,12 @@ import mp.Command;
 import mp.Message;
 #end
 
-class Main extends Sprite {
+class Main extends App {
 
 	var world:World;
 	var state:GameState;
+	var stage = hxd.Stage.getInstance();
+	var root:Sprite;
 	var connected = false;
 	var id:Null<Int> = null;
 	#if MULTIPLAYER
@@ -43,23 +41,12 @@ class Main extends Sprite {
 			world = new World();
 			id = world.createPlayer().id;
 		#end
-		
-		openfl.Lib.current.addChild(new FPS(10, 10, 0xffffff));
-		
-		stage.addEventListener(Event.ENTER_FRAME, update);
-		// #if desktop
-		stage.addEventListener(MouseEvent.MOUSE_DOWN, onmousedown);
-		stage.addEventListener(MouseEvent.MOUSE_MOVE, onmousemove);
-		stage.addEventListener(MouseEvent.MOUSE_UP, onmouseup);
-		// #else
-		// stage.addEventListener(TouchEvent.TOUCH_BEGIN, ontouchdown);
-		// stage.addEventListener(TouchEvent.TOUCH_MOVE, ontouchmove);
-		// stage.addEventListener(TouchEvent.TOUCH_END, ontouchup);
-		// #end
+
+		hxd.Stage.getInstance().addEventTarget(onEvent);
 	}
 	
 	var sprites = new Map();
-	function update(_) {
+	override function update(_) {
 		#if MULTIPLAYER
 			ws.process();
 			if(state == null) return; // not ready
@@ -67,12 +54,16 @@ class Main extends Sprite {
 			state = world.update();
 		#end
 
+		if (root == null) {
+			root = new Sprite(s2d);
+		}
+
 		// handle move
 		var player = state.objects.find(function(o) return o.id == id);
 		if(player != null) {
 			// move player
 			if(touched) {
-				var dir = Math.atan2(cursor.y - stage.stageHeight / 2, cursor.x - stage.stageWidth / 2);
+				var dir = Math.atan2(cursor.y - stage.height / 2, cursor.x - stage.width / 2);
 				#if MULTIPLAYER
 					if(player.speed == 0) ws.sendString(Serializer.run(StartMove));
 					ws.sendString(Serializer.run(SetDirection(dir)));
@@ -90,20 +81,18 @@ class Main extends Sprite {
 
 			// update camera
 			var scale = 40 / player.size;
-			this.scaleX = scale;
-			this.scaleY = scale;
-			this.x = stage.stageWidth / 2 - player.x * scale;
-			this.y = stage.stageHeight / 2 - player.y * scale;
+			root.scaleX = root.scaleY = root.scaleX + (scale - root.scaleX) * 0.25;
+			root.x = stage.width / 2 - player.x * root.scaleX;
+			root.y = stage.height / 2 - player.y * root.scaleX;
 		}
 
 		for(object in state.objects) {
 			if(!sprites.exists(object)) {
-				var sprite = new Sprite();
-				sprites.set(object, sprite);
-				sprite.graphics.beginFill(object.color);
-				sprite.graphics.drawCircle(0, 0, 100);
-				sprite.graphics.endFill();
-				addChild(sprite);
+				var size = 100;
+				var tile = Tile.fromColor(object.color, size, size);
+				var bmp = new Bitmap(tile, root);
+				bmp.tile.dx = bmp.tile.dy = Std.int(-size/2);
+				sprites.set(object, bmp);
 			}
 			var sprite = sprites.get(object);
 			sprite.scaleX = sprite.scaleY = object.size / 100;
@@ -113,38 +102,58 @@ class Main extends Sprite {
 		
 		for(object in sprites.keys()) {
 			if(!state.objects.exists(function(obj) return obj == object)) {
-				removeChild(sprites.get(object));
+				sprites.get(object).remove();
 				sprites.remove(object);
 			}
 		}
 	} //update
 
+	function onEvent(event:Event) {
+		switch(event.kind) {
+			case EMove:
+				onmousemove();
+			case EPush:
+				onmousedown();
+			case ERelease:
+				onmouseup();
+			case _: //pass
+		}
+	}
+
 	var touched:Bool = false;
-	var cursor = new Point();
-	function onmousedown(e:MouseEvent) {
+	var cursor = {x:0.0, y:0.0};
+	function onmousedown() {
 		touched = true;
-		cursor.setTo(e.stageX, e.stageY);
+		cursor.x = stage.mouseX;
+		cursor.y = stage.mouseY;
 	}
 	
-	function onmousemove(e:MouseEvent) {
-		cursor.setTo(e.stageX, e.stageY);
+	function onmousemove() {
+		cursor.x = stage.mouseX;
+		cursor.y = stage.mouseY;
 	}
 
-	function onmouseup(_) {
+	function onmouseup() {
 		touched = false;
 	}
 	
-	function ontouchdown(e:TouchEvent) {
+	function ontouchdown() {
 		touched = true;
-		cursor.setTo(e.stageX, e.stageY);
+		cursor.x = stage.mouseX;
+		cursor.y = stage.mouseY;
 	}
 	
-	function ontouchmove(e:TouchEvent) {
-		cursor.setTo(e.stageX, e.stageY);
+	function ontouchmove() {
+		cursor.x = stage.mouseX;
+		cursor.y = stage.mouseY;
 	}
 
-	function ontouchup(e) {
+	function ontouchup() {
 		touched = false;
 	}
 
-} //Main
+	static function main():Void {
+		new Main();
+	}
+
+}
