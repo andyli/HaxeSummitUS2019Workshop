@@ -94,7 +94,7 @@ class World {
 					var dy = object.y - other.y;
 					
 					// distance < radius
-					if(dx * dx + dy * dy < object.size * object.size) {
+					if(dx * dx + dy * dy < Math.pow((object.size + other.size) * 0.5, 2)) {
 						// we don't want to modify the array we are iterating
 						removed.push(other);
 						
