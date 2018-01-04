@@ -154,7 +154,11 @@ class Main extends App {
 	}
 
 	static function main():Void {
-		new Main();
+		var e = new h3d.Engine(true, 4);
+		e.onReady = function() {
+			new Main();
+		}
+		e.init();
 	}
 
 }
