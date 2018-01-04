@@ -89,10 +89,11 @@ class Main extends App {
 		for(object in state.objects) {
 			if(!sprites.exists(object)) {
 				var size = 100;
-				var tile = Tile.fromColor(object.color, size, size);
-				var bmp = new Bitmap(tile, root);
-				bmp.tile.dx = bmp.tile.dy = Std.int(-size/2);
-				sprites.set(object, bmp);
+				var g = new Graphics(root);
+				g.beginFill(object.color);
+				g.drawCircle(0, 0, size/2);
+				g.endFill();
+				sprites.set(object, g);
 			}
 			var sprite = sprites.get(object);
 			sprite.scaleX = sprite.scaleY = object.size / 100;
