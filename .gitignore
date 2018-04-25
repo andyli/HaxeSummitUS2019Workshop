@@ -1,2 +1,2 @@
-/bin/
-/client.hxml
+/bin/*
+!/bin/index.html
