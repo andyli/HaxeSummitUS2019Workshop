@@ -1,6 +1,6 @@
-# Haxe Summit 2017 Haxe Tutorial
+# Haxe Summit US 2018 Introductory Haxe Workshop
 
-Workshop info: [Haxe Tutorial](http://summit.haxe.org/#talk-haxe-tutorial)
+Workshop info: [Introductory Haxe Workshop](https://summit.haxe.org/us/2018/#talk-haxe-workshop)
 
 This is an [agar.io](https://agar.io/) clone to demonstrate the capability of Haxe in building cross platform games,
 where codes are shared among multiple game platforms (web, mac, windows, android & ios),
@@ -22,7 +22,7 @@ Get Haxe from https://haxe.org/download/.
 
 Get Node.js from https://nodejs.org/, and optionally [yarn](https://yarnpkg.com/).
 
-### Install Git (used by snowfall)
+### Install Git
 
 Get [Git](https://git-scm.com/) and make it available in the command line. i.e. `git --version` should print something like `git version 2.7.4`.
 
@@ -31,11 +31,10 @@ Get [Git](https://git-scm.com/) and make it available in the command line. i.e. 
 Note: if it is the first time you are using `haxelib`, you will have to run `haxelib setup` first.
  
 
- * [OpenFL](http://www.openfl.org/). According to the instruction at http://www.openfl.org/learn/docs/getting-started/:
+ * [Heaps.io](https://github.com/HeapsIO/heaps)
 
    ```bash
-   haxelib install openfl
-   haxelib run openfl setup
+   haxelib install heaps
    ```
 
  * [haxe-ws](https://github.com/soywiz/haxe-ws)
@@ -50,22 +49,17 @@ Note: if it is the first time you are using `haxelib`, you will have to run `hax
    haxelib install hxnodejs
    ```
 
- * [hxcpp](https://github.com/HaxeFoundation/hxcpp)
-
-   ```
-   haxelib install hxcpp 3.4.64
-   ```
-
 ### Install Visual Studio Code
 
 Although in theory you can use any [IDE or text editor](https://haxe.org/documentation/introduction/editors-and-ides.html), we recommend using [Visual Studio Code](https://code.visualstudio.com/) with the [Haxe Extension Pack](https://marketplace.visualstudio.com/items?itemName=vshaxe.haxe-extension-pack), which offers the best Haxe support at the moment.
 
 ### Install C++ development tools
 
-(Optional, for building native targets, e.g. mac, windows, linux, ios, android)
-Depending on your OS, [Visual Studio](https://www.visualstudio.com/) (Windows), [XCode](https://developer.apple.com/xcode/) (Mac), or gcc (Linux).
+(Optional, for building native targets, e.g. mac, windows, linux)
 
-## Notes
+Depending on your OS, [Visual Studio](https://www.visualstudio.com/) (Windows), [XCode](https://developer.apple.com/xcode/) (Mac), or gcc/g++ (Linux).
+
+## Notes (&#9888; WORK-IN-PROGRESS)
 
 We will introduce Haxe and go through creating a simple multi-player game during the workshop together. The instruction will be given during the workshop. Below are some notes for future reference.
 
@@ -78,7 +72,7 @@ The workshop is divided into 6 sections:
  2. [Haxe programming basics](section2.md)
     * VSCode project setup
     * basic building blocks
- 3. [Game building with OpenFL](section3.md)
+ 3. [Game building with Heaps](section3.md)
     * using Haxe libraries and frameworks
     * game architecture
  4. [Using NodeJS](section4.md)
@@ -97,8 +91,6 @@ Each section is 30-minute long, with 10-minute breaks in-between.
  * Haxe Manual: https://haxe.org/manual/introduction.html
  * Haxe API docs: https://devdocs.io/ (or http://api.haxe.org/)
  * Try Haxe: https://try.haxe.org/
- * OpenFL tutorials: http://www.openfl.org/learn/tutorials/
- * OpenFL API docs: http://api.openfl.org/
  * `haxe-ws` library: https://lib.haxe.org/p/haxe-ws
  * `ws` npm package: https://www.npmjs.com/package/ws#usage-examples
 
@@ -116,7 +108,7 @@ mode. The same piece of code is used in both client and server.
 
 ## Feedback / Questions
 
-Feel free to [open issues](https://github.com/andyli/HaxeSummit2017Tutorial/issues) or contact us directly.
+Feel free to [open issues](https://github.com/andyli/HaxeSummitUS2018Workshop/issues) or contact us directly.
 
 ## License
 
@@ -128,11 +120,11 @@ Feel free to [open issues](https://github.com/andyli/HaxeSummit2017Tutorial/issu
   <br />
   To the extent possible under law,
   <span resource="[_:publisher]" rel="dct:publisher">
-    <span property="dct:title">Andy Li & Kevin Leung</span></span>
+    <span property="dct:title">Andy Li</span></span>
   has waived all copyright and related or neighboring rights to
-  <span property="dct:title">Haxe Summit 2017 Haxe Tutorial</span>.
+  <span property="dct:title">Haxe Summit US 2018 Introductory Haxe Workshop</span>.
 This work is published from:
 <span property="vcard:Country" datatype="dct:ISO3166"
-      content="HK" about="https://github.com/kevinresol/hkoscon2017-haxe-game">
+      content="HK" about="https://github.com/andyli/HaxeSummitUS2018Workshop">
   Hong Kong</span>.
 </p>
