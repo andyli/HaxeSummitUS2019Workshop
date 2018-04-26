@@ -1,3 +1,5 @@
+![banner](assets/Haxe-Speaker-Banner_Haxe-Foundation_Andy-Li.jpg)
+
 # Haxe Summit US 2018 Introductory Haxe Workshop
 
 Workshop info: [Introductory Haxe Workshop](https://summit.haxe.org/us/2018/#talk-haxe-workshop)
