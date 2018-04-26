@@ -1,0 +1,20 @@
+language: haxe
+
+os:
+  - linux
+  - osx
+
+dist: trusty
+
+haxe:
+  - "3.4.7"
+  - "4.0.0-preview.3"
+  - development
+
+matrix:
+  allow_failures:
+    - haxe: development
+
+hxml:
+  - server.hxml
+  - web.hxml
