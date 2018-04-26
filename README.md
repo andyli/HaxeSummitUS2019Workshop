@@ -22,7 +22,7 @@ Get Haxe from https://haxe.org/download/.
 
 ### Install Node.js
 
-Get Node.js from https://nodejs.org/, and optionally [yarn](https://yarnpkg.com/).
+Get Node.js from https://nodejs.org/.
 
 ### Install Git
 
@@ -30,7 +30,7 @@ Get [Git](https://git-scm.com/) and make it available in the command line. i.e. 
 
 ### Install Haxe Libraries
 
-Note: if it is the first time you are using `haxelib`, you will have to run `haxelib setup` first.
+Note: if it is the first time you are using `haxelib`, you will have to run `haxelib setup` first (e.g. `mkdir ~/haxelib && haxelib setup ~/haxelib`).
  
 
  * [Heaps.io](https://github.com/HeapsIO/heaps)
@@ -93,6 +93,7 @@ Each section is 30-minute long, with 10-minute breaks in-between.
  * Haxe Manual: https://haxe.org/manual/introduction.html
  * Haxe API docs: https://devdocs.io/ (or http://api.haxe.org/)
  * Try Haxe: https://try.haxe.org/
+ * Heaps: https://heapsio.github.io/heaps.io/ (the WIP new website)
  * `haxe-ws` library: https://lib.haxe.org/p/haxe-ws
  * `ws` npm package: https://www.npmjs.com/package/ws#usage-examples
 
