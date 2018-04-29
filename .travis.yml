@@ -25,5 +25,5 @@ deploy:
   on:
     branch: master
     haxe: "3.4.7"
-    os: linux
+    condition: $TRAVIS_OS_NAME = linux
   skip_cleanup: true
