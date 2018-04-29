@@ -8,7 +8,7 @@ This is an [agar.io](https://agar.io/) clone to demonstrate the capability of Ha
 where codes are shared among multiple game platforms (web, mac, windows, android & ios),
 as well as between game client and game server for multiplayer games.
 
-Demo: https://kevinresol.github.io/hkoscon2017-haxe-game/ (single player mode)
+Demo: https://andyli.github.io/HaxeSummitUS2018Workshop/ (single player mode)
 
 ## Preparation
 
