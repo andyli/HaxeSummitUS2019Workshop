@@ -1,4 +1,4 @@
 -cp src
 -lib heaps
 -main Main
--js bin/game.js
+-js bin/web/game.js

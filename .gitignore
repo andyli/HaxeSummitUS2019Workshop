@@ -1,2 +1,2 @@
-/bin/*
-!/bin/index.html
+/bin/web/game.js
+bin/server/server.js

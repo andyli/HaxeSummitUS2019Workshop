@@ -18,3 +18,12 @@ matrix:
 hxml:
   - server.hxml
   - web.hxml
+
+deploy:
+  provider: script
+  script: haxe deploy.hxml
+  on:
+    branch: master
+    haxe: "3.4.7"
+    os: linux
+  skip_cleanup: true
