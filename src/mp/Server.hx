@@ -50,7 +50,7 @@ class Server {
 		});
 
 		// game loop
-		var timer = new haxe.Timer(32);
+		var timer = new haxe.Timer(Std.int(1/60 * 1000));
 		timer.run = function() {
 			var state = world.update();
 
