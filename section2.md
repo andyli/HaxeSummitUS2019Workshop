@@ -428,9 +428,9 @@ Notice that there is no concept of private, so `kevin` cannot really protect it'
 
 An anonymous object is anonymous because it is an object without a class. Although without a class, there is still a structural type associated with the object.
 
-For the above example, the type of `andy` and `kevin` can be illustrated as follows:
+For the above example, the type of `andy` and `kevin` can be declared as follows:
 
-```
+```haxe
 // give the structural type an "alise" for easy reference
 typedef Person = {
     name:String,

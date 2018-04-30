@@ -42,7 +42,7 @@ class Main extends App {
 			id = world.createPlayer().id;
 		#end
 
-		hxd.Stage.getInstance().addEventTarget(onEvent);
+		stage.addEventTarget(onEvent);
 	}
 	
 	var sprites = new Map();
@@ -159,6 +159,7 @@ class Main extends App {
 			new Main();
 		}
 		e.init();
+		
 	}
 
 }

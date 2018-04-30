@@ -73,4 +73,4 @@ Most game engines work in this way:
 
 The core of a game usually consists of a main game loop, which is a function written by us as game developers. In general, the loop runs about 30-60 times per second. During each iteration, the user input will be processed, game state will be updated, and the visuals on the screen will be updated. 
 
-In Heaps, the main game loop is already provided, all we have to do is to `extends hxd.App` and override its `update` method, which is run per iteration step. Inputs are handled by `onEvent`. 2D visuals are generally handled by `h2d.Sprite` and its subclasses.
+In Heaps, the main game loop is already provided, all we have to do is to `extends hxd.App` and override its `update` method, which is run per iteration step. Input events are dispatched from `stage`. We can listen to them by `stage.addEventTarget(eventHandler)`. 2D visuals are generally handled by `h2d.Sprite` and its subclasses.
