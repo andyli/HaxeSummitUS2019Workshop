@@ -11,11 +11,11 @@ class World {
 	// counter for the object IDs
 	var count:Int = 0;
 
-	public function new() {
+	public function new(width:Int, height:Int) {
 		size = {
-			width: 2000,
-			height: 2000,
-		}
+			width: width,
+			height: height
+		};
 
 		for(i in 0...10) createAi();
 		for(i in 0...50) createFood();

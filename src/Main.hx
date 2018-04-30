@@ -16,16 +16,15 @@ class Main extends App {
 	var world:World;
 	var state:GameState;
 	var stage = hxd.Stage.getInstance();
-	var root:Sprite;
 	var connected = false;
 	var id:Null<Int> = null;
 	var touched:Bool = false;
+	var sprites:Map<Object, Graphics> = new Map();
 	#if MULTIPLAYER
 	var ws:haxe.net.WebSocket;
 	#end
-	
-	public function new() {
-		super();
+
+	override function init() {
 		trace("built at " + BuildInfo.getBuildDate());
 
 		#if MULTIPLAYER
@@ -39,14 +38,13 @@ class Main extends App {
 				}
 			}
 		#else
-			world = new World();
+			world = new World(s2d.width, s2d.height);
 			id = world.createPlayer().id;
 		#end
 
 		stage.addEventTarget(onEvent);
 	}
-	
-	var sprites = new Map();
+
 	override function update(_) {
 		#if MULTIPLAYER
 			ws.process();
@@ -55,17 +53,13 @@ class Main extends App {
 			state = world.update();
 		#end
 
-		if (root == null) {
-			root = new Sprite(s2d);
-		}
-
 		// handle move
 		var player = state.objects.find(function(o) return o.id == id);
 		if(player != null) {
 			// move player
 			if(touched) {
 				// https://math.stackexchange.com/questions/1201337/finding-the-angle-between-two-points
-				var dir = Math.atan2(stage.mouseY - stage.height / 2, stage.mouseX - stage.width / 2);
+				var dir = Math.atan2(stage.mouseY - player.y, stage.mouseX - player.x);
 				#if MULTIPLAYER
 					if(player.speed == 0) ws.sendString(Serializer.run(StartMove));
 					ws.sendString(Serializer.run(SetDirection(dir)));
@@ -80,18 +74,12 @@ class Main extends App {
 					player.speed = 0;
 				#end
 			}
-
-			// update camera
-			var scale = 40 / player.size;
-			root.scaleX = root.scaleY = root.scaleX + (scale - root.scaleX) * 0.25;
-			root.x = stage.width / 2 - player.x * root.scaleX;
-			root.y = stage.height / 2 - player.y * root.scaleX;
 		}
 
 		for(object in state.objects) {
 			if(!sprites.exists(object)) {
 				var size = 100;
-				var g = new Graphics(root);
+				var g = new Graphics(s2d);
 				g.beginFill(object.color);
 				g.drawCircle(0, 0, size/2);
 				g.endFill();
@@ -109,7 +97,7 @@ class Main extends App {
 				sprites.remove(object);
 			}
 		}
-	} //update
+	}
 
 	function onEvent(event:Event) {
 		switch(event.kind) {
@@ -127,7 +115,6 @@ class Main extends App {
 			new Main();
 		}
 		e.init();
-		
 	}
 
 }
