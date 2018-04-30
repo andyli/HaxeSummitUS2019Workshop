@@ -1,0 +1,6 @@
+-cp src
+-lib heaps
+-lib haxe-ws
+-D MULTIPLAYER
+-main Main
+-js bin/web-mp/game.js
