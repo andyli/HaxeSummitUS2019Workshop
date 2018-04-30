@@ -19,6 +19,7 @@ class Main extends App {
 	var root:Sprite;
 	var connected = false;
 	var id:Null<Int> = null;
+	var touched:Bool = false;
 	#if MULTIPLAYER
 	var ws:haxe.net.WebSocket;
 	#end
@@ -63,7 +64,8 @@ class Main extends App {
 		if(player != null) {
 			// move player
 			if(touched) {
-				var dir = Math.atan2(cursor.y - stage.height / 2, cursor.x - stage.width / 2);
+				// https://math.stackexchange.com/questions/1201337/finding-the-angle-between-two-points
+				var dir = Math.atan2(stage.mouseY - stage.height / 2, stage.mouseX - stage.width / 2);
 				#if MULTIPLAYER
 					if(player.speed == 0) ws.sendString(Serializer.run(StartMove));
 					ws.sendString(Serializer.run(SetDirection(dir)));
@@ -111,46 +113,12 @@ class Main extends App {
 
 	function onEvent(event:Event) {
 		switch(event.kind) {
-			case EMove:
-				onmousemove();
 			case EPush:
-				onmousedown();
-			case ERelease:
-				onmouseup();
+				touched = true;
+			case ERelease, EReleaseOutside:
+				touched = false;
 			case _: //pass
 		}
-	}
-
-	var touched:Bool = false;
-	var cursor = {x:0.0, y:0.0};
-	function onmousedown() {
-		touched = true;
-		cursor.x = stage.mouseX;
-		cursor.y = stage.mouseY;
-	}
-	
-	function onmousemove() {
-		cursor.x = stage.mouseX;
-		cursor.y = stage.mouseY;
-	}
-
-	function onmouseup() {
-		touched = false;
-	}
-	
-	function ontouchdown() {
-		touched = true;
-		cursor.x = stage.mouseX;
-		cursor.y = stage.mouseY;
-	}
-	
-	function ontouchmove() {
-		cursor.x = stage.mouseX;
-		cursor.y = stage.mouseY;
-	}
-
-	function ontouchup() {
-		touched = false;
 	}
 
 	static function main():Void {
