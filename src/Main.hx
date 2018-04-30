@@ -19,7 +19,7 @@ class Main extends App {
 	var connected = false;
 	var id:Null<Int> = null;
 	var touched:Bool = false;
-	var sprites:Map<Object, Graphics> = new Map();
+	var sprites:Map<Int, Graphics> = new Map();
 	#if MULTIPLAYER
 	var ws:haxe.net.WebSocket;
 	#end
@@ -77,24 +77,30 @@ class Main extends App {
 		}
 
 		for(object in state.objects) {
-			if(!sprites.exists(object)) {
+			if(!sprites.exists(object.id)) {
 				var size = 100;
 				var g = new Graphics(s2d);
 				g.beginFill(object.color);
 				g.drawCircle(0, 0, size/2);
 				g.endFill();
-				sprites.set(object, g);
+
+				if (object.id == id) {
+					g.beginFill(0x000000);
+					g.drawCircle(0, 0, 20);
+					g.endFill();
+				}
+				sprites.set(object.id, g);
 			}
-			var sprite = sprites.get(object);
+			var sprite = sprites.get(object.id);
 			sprite.scaleX = sprite.scaleY = object.size / 100;
 			sprite.x = object.x;
 			sprite.y = object.y;
 		}
 		
-		for(object in sprites.keys()) {
-			if(!state.objects.exists(function(obj) return obj == object)) {
-				sprites.get(object).remove();
-				sprites.remove(object);
+		for(objectId in sprites.keys()) {
+			if(!state.objects.exists(function(obj) return obj.id == objectId)) {
+				sprites.get(objectId).remove();
+				sprites.remove(objectId);
 			}
 		}
 	}
