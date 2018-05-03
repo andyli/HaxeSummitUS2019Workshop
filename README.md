@@ -36,7 +36,7 @@ Although in theory you can use any [IDE or text editor](https://haxe.org/documen
 
 We will introduce Haxe and go through creating a simple multi-player game during the workshop together. The instruction will be given during the workshop. Below are some notes for future reference.
 
-The workshop is divided into 6 sections:
+The workshop is divided into 5 sections:
 
  1. [Getting started](section1.md)
     * what is Haxe
@@ -53,11 +53,6 @@ The workshop is divided into 6 sections:
     * NodeJS basics (CLI, NPM)
  5. [Multiplayer](section5.md)
     * server-client communication
- 6. Where to go from here
-    * Haxe social networks
-    * pointers to advanced topics: game engines, hxcpp externs, web development, macros
-
-Each section is 30-minute long, with 10-minute breaks in-between.
 
 ### quick links
 
