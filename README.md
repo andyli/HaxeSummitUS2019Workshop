@@ -18,48 +18,19 @@ Please follow the instruction listed below before the workshop, such that you ca
 
 ### Install Haxe
 
-Get Haxe from https://haxe.org/download/.
+Get Haxe from https://haxe.org/download/. We recommend 3.4.7, but 4.0.0-preview.3 is also fine.
 
 ### Install Node.js
 
-Get Node.js from https://nodejs.org/.
+Get Node.js from https://nodejs.org/. We recommend the LTS version, but the latest release is also fine.
 
 ### Install Git
 
 Get [Git](https://git-scm.com/) and make it available in the command line. i.e. `git --version` should print something like `git version 2.7.4`.
 
-### Install Haxe Libraries
-
-Note: if it is the first time you are using `haxelib`, you will have to run `haxelib setup` first (e.g. `mkdir ~/haxelib && haxelib setup ~/haxelib`).
- 
-
- * [Heaps.io](https://github.com/HeapsIO/heaps)
-
-   ```bash
-   haxelib install heaps
-   ```
-
- * [haxe-ws](https://github.com/soywiz/haxe-ws)
-
-   ```bash
-   haxelib install haxe-ws
-   ```
-
- * [hxnodejs](https://github.com/HaxeFoundation/hxnodejs)
-
-   ```bash
-   haxelib install hxnodejs
-   ```
-
 ### Install Visual Studio Code
 
 Although in theory you can use any [IDE or text editor](https://haxe.org/documentation/introduction/editors-and-ides.html), we recommend using [Visual Studio Code](https://code.visualstudio.com/) with the [Haxe Extension Pack](https://marketplace.visualstudio.com/items?itemName=vshaxe.haxe-extension-pack), which offers the best Haxe support at the moment.
-
-### Install C++ development tools
-
-(Optional, for building native targets, e.g. mac, windows, linux)
-
-Depending on your OS, [Visual Studio](https://www.visualstudio.com/) (Windows), [XCode](https://developer.apple.com/xcode/) (Mac), or gcc/g++ (Linux).
 
 ## Notes (&#9888; WORK-IN-PROGRESS)
 
