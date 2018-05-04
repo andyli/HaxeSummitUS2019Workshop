@@ -1,0 +1,6 @@
+-cp src
+-lib heaps
+-main Main
+-swf bin/Game.swf
+-swf-version 12
+-swf-header 960:640:60:000000

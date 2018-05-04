@@ -18,6 +18,7 @@ matrix:
 hxml:
   - server.hxml
   - web.hxml
+  - flash.hxml
 
 deploy:
   provider: script

@@ -1,3 +1,5 @@
 /bin/web/game.js
 /bin/web-mp/game.js
-bin/server/server.js
+/bin/server/server.js
+*.swf
+*.hl
