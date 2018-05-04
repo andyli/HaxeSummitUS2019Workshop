@@ -24,10 +24,6 @@ Get Haxe from https://haxe.org/download/. We recommend 3.4.7, but 4.0.0-preview.
 
 Get Node.js from https://nodejs.org/. We recommend the LTS version, but the latest release is also fine.
 
-### Install Git
-
-Get [Git](https://git-scm.com/) and make it available in the command line. i.e. `git --version` should print something like `git version 2.7.4`.
-
 ### Install Visual Studio Code
 
 Although in theory you can use any [IDE or text editor](https://haxe.org/documentation/introduction/editors-and-ides.html), we recommend using [Visual Studio Code](https://code.visualstudio.com/) with the [Haxe Extension Pack](https://marketplace.visualstudio.com/items?itemName=vshaxe.haxe-extension-pack), which offers the best Haxe support at the moment.
