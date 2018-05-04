@@ -99,7 +99,7 @@ class World {
 						removed.push(other);
 						
 						// size increases after consuming the target
-						object.size += other.size * 0.1;
+						object.size += other.size * 0.4;
 					}
 				}
 			}
