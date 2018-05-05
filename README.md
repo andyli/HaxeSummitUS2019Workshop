@@ -28,7 +28,7 @@ Get Node.js from https://nodejs.org/. We recommend the LTS version, but the late
 
 Although in theory you can use any [IDE or text editor](https://haxe.org/documentation/introduction/editors-and-ides.html), we recommend using [Visual Studio Code](https://code.visualstudio.com/) with the [Haxe Extension Pack](https://marketplace.visualstudio.com/items?itemName=vshaxe.haxe-extension-pack), which offers the best Haxe support at the moment.
 
-## Notes (&#9888; WORK-IN-PROGRESS)
+## Notes
 
 We will introduce Haxe and go through creating a simple multi-player game during the workshop together. The instruction will be given during the workshop. Below are some notes for future reference.
 
