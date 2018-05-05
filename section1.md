@@ -64,7 +64,7 @@ haxelib version
 ```
 
 ```sh
-neko version
+neko -version
 ```
 
 Version numbers of the corresponding programs will be printed.
