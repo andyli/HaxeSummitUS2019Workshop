@@ -15,7 +15,7 @@ class Main extends App {
 
 	var world:World;
 	var state:GameState;
-	var stage = hxd.Stage.getInstance();
+	var window = hxd.Window.getInstance();
 	var connected = false;
 	var id:Null<Int> = null;
 	var touched:Bool = false;
@@ -42,7 +42,7 @@ class Main extends App {
 			id = world.createPlayer().id;
 		#end
 
-		stage.addEventTarget(onEvent);
+		window.addEventTarget(onEvent);
 	}
 
 	override function update(_) {
@@ -59,7 +59,7 @@ class Main extends App {
 			// move player
 			if(touched) {
 				// https://math.stackexchange.com/questions/1201337/finding-the-angle-between-two-points
-				var dir = Math.atan2(stage.mouseY - player.y, stage.mouseX - player.x);
+				var dir = Math.atan2(window.mouseY - player.y, window.mouseX - player.x);
 				#if MULTIPLAYER
 					if(player.speed == 0) ws.sendString(Serializer.run(StartMove));
 					ws.sendString(Serializer.run(SetDirection(dir)));

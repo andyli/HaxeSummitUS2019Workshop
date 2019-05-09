@@ -3,3 +3,4 @@
 /bin/server/server.js
 *.swf
 *.hl
+.haxelib

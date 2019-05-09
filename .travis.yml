@@ -15,10 +15,14 @@ matrix:
   allow_failures:
     - haxe: development
 
-hxml:
-  - server.hxml
-  - web.hxml
-  - flash.hxml
+install:
+  - haxelib install all --always
+
+script:
+  - haxe server.hxml
+  - haxe web.hxml
+  - haxe web-mp.hxml
+  - haxe flash.hxml
 
 deploy:
   provider: script

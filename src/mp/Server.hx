@@ -14,7 +14,7 @@ class Server {
 
 		// websocket server
 		var clients:Array<Client> = [];
-		var world = new World();
+		var world = new World(1920, 1080);
 		var ws = new WebSocketServer({port:8888});
 		ws.on('connection', function(cnx:Connection) {
 			var client = new Client(cnx);
