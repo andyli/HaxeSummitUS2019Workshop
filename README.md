@@ -1,14 +1,12 @@
-![banner](assets/Haxe-Speaker-Banner_Haxe-Foundation_Andy-Li.jpg)
+# Haxe Summit US 2019 Introductory Haxe Workshop
 
-# Haxe Summit US 2018 Introductory Haxe Workshop
-
-Workshop info: [Introductory Haxe Workshop](https://summit.haxe.org/us/2018/#talk-haxe-workshop)
+Workshop info: [Introductory Haxe Workshop](https://summit.haxe.org/us/2019/#talk-haxe-workshop)
 
 This is an [agar.io](https://agar.io/) clone to demonstrate the capability of Haxe in building cross platform games,
 where codes are shared among multiple game platforms (web, mac, windows, android & ios),
 as well as between game client and game server for multiplayer games.
 
-Demo: https://andyli.github.io/HaxeSummitUS2018Workshop/ (single player mode)
+Demo: https://andyli.github.io/HaxeSummitUS2019Workshop/ (single player mode)
 
 ## Preparation
 
@@ -73,7 +71,7 @@ mode. The same piece of code is used in both client and server.
 
 ## Feedback / Questions
 
-Feel free to [open issues](https://github.com/andyli/HaxeSummitUS2018Workshop/issues) or contact us directly.
+Feel free to [open issues](https://github.com/andyli/HaxeSummitUS2019Workshop/issues) or contact us directly.
 
 ## License
 
@@ -87,9 +85,9 @@ Feel free to [open issues](https://github.com/andyli/HaxeSummitUS2018Workshop/is
   <span resource="[_:publisher]" rel="dct:publisher">
     <span property="dct:title">Andy Li</span></span>
   has waived all copyright and related or neighboring rights to
-  <span property="dct:title">Haxe Summit US 2018 Introductory Haxe Workshop</span>.
+  <span property="dct:title">Haxe Summit US 2019 Introductory Haxe Workshop</span>.
 This work is published from:
 <span property="vcard:Country" datatype="dct:ISO3166"
-      content="HK" about="https://github.com/andyli/HaxeSummitUS2018Workshop">
+      content="HK" about="https://github.com/andyli/HaxeSummitUS2019Workshop">
   Hong Kong</span>.
 </p>
