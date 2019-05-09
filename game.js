@@ -338,7 +338,7 @@ var Main = function() {
 	this.touched = false;
 	this.id = null;
 	this.connected = false;
-	this.stage = hxd_Window.getInstance();
+	this.window = hxd_Window.getInstance();
 	hxd_App.call(this);
 };
 $hxClasses["Main"] = Main;
@@ -353,10 +353,10 @@ Main.main = function() {
 Main.__super__ = hxd_App;
 Main.prototype = $extend(hxd_App.prototype,{
 	init: function() {
-		haxe_Log.trace("built at " + "2019-05-09 07:22:45",{ fileName : "Main.hx", lineNumber : 28, className : "Main", methodName : "init"});
+		haxe_Log.trace("built at " + "2019-05-09 07:37:57",{ fileName : "Main.hx", lineNumber : 28, className : "Main", methodName : "init"});
 		this.world = new game_World(this.s2d.width,this.s2d.height);
 		this.id = this.world.createPlayer().id;
-		this.stage.addEventTarget($bind(this,this.onEvent));
+		this.window.addEventTarget($bind(this,this.onEvent));
 	}
 	,update: function(_) {
 		var _gthis = this;
@@ -366,7 +366,7 @@ Main.prototype = $extend(hxd_App.prototype,{
 		});
 		if(player != null) {
 			if(this.touched) {
-				var dir = Math.atan2(this.stage.get_mouseY() - player.y,this.stage.get_mouseX() - player.x);
+				var dir = Math.atan2(this.window.get_mouseY() - player.y,this.window.get_mouseX() - player.x);
 				player.speed = 3;
 				player.dir = dir;
 			} else {
