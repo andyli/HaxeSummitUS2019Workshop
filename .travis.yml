@@ -17,6 +17,7 @@ matrix:
 
 install:
   - haxelib install all --always
+  - haxelib list
 
 script:
   - haxe server.hxml
