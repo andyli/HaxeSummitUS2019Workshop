@@ -1,6 +1,6 @@
 # Haxe Summit US 2019 Introductory Haxe Workshop
 
-Workshop info: [Introductory Haxe Workshop](https://summit.haxe.org/us/2019/#talk-haxe-workshop)
+Workshop info: [Introductory Haxe Workshop](https://summit.haxe.org/us/2019/#speaker-andy)
 
 This is an [agar.io](https://agar.io/) clone to demonstrate the capability of Haxe in building cross platform games,
 where codes are shared among multiple game platforms (web, mac, windows, android & ios),
@@ -16,7 +16,7 @@ Please follow the instruction listed below before the workshop, such that you ca
 
 ### Install Haxe
 
-Get Haxe from https://haxe.org/download/. We recommend 3.4.7, but 4.0.0-preview.3 is also fine.
+Get Haxe from https://haxe.org/download/. We recommend 3.4.7, but 4.0.0-rc.2 is also fine.
 
 ### Install Node.js
 
