@@ -16,7 +16,7 @@ Please follow the instruction listed below before the workshop, such that you ca
 
 ### Install Haxe
 
-Get Haxe from https://haxe.org/download/. We recommend 3.4.7, but 4.0.0-rc.2 is also fine.
+Get Haxe from https://haxe.org/download/. We recommend 3.4.7, but 4.0.x is also fine.
 
 ### Install Node.js
 

@@ -8,7 +8,7 @@ dist: xenial
 
 haxe:
   - "3.4.7"
-  - "4.0.0-rc.2"
+  - "4.0.5"
   - development
 
 matrix:
