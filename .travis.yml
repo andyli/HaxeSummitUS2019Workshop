@@ -4,11 +4,10 @@ os:
   - linux
   - osx
 
-dist: xenial
+dist: bionic
 
 haxe:
-  - "3.4.7"
-  - "4.0.5"
+  - "4.1.2"
   - development
 
 matrix:
@@ -30,6 +29,6 @@ deploy:
   script: haxe deploy.hxml
   on:
     branch: master
-    haxe: "3.4.7"
+    haxe: "4.1.2"
     condition: $TRAVIS_OS_NAME = linux && $TRAVIS_EVENT_TYPE != "cron"
   skip_cleanup: true
